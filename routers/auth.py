@@ -1,12 +1,13 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from pwdlib import PasswordHash
+from pwdlib.hashers.argon2 import Argon2Hasher
 
 from auth.jwt_handler import create_access_token
 
 router = APIRouter()
 
-password_hash = PasswordHash.recommended()
+password_hash = PasswordHash((Argon2Hasher(),))
 
 users = {}
 
